@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Header</title>
+</head>
+<body>
+    <nav th:fragment="navbar" class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
+        <div class="container-fluid">
+            <a class="navbar-brand fw-bold text-primary" href="/dashboard">
+                <i class="bi bi-bar-chart-line-fill me-2"></i><span th:text="${appName != null ? appName : 'CTH Enterprise Platform'}">CTH Enterprise Platform</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/dashboard"><i class="bi bi-speedometer2 me-1"></i> Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/users"><i class="bi bi-people me-1"></i> User Maintenance</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/reports"><i class="bi bi-file-earmark-spreadsheet me-1"></i> Query & Report Builder</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/settings"><i class="bi bi-gear me-1"></i> System Settings</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/swagger-ui.html" target="_blank"><i class="bi bi-code-square me-1"></i> Swagger API Docs</a>
+                    </li>
+                </ul>
+                <div class="d-flex align-items-center text-light me-3">
+                    <i class="bi bi-person-circle me-1"></i>
+                    <span sec:authentication="name">User</span>
+                </div>
+                <form th:action="@{/logout}" method="post" class="d-flex">
+                    <button class="btn btn-outline-danger btn-sm" type="submit"><i class="bi bi-box-arrow-right me-1"></i> Logout</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+</body>
+</html>

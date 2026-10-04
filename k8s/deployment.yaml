@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cth-app-deployment
+  labels:
+    app: cth-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: cth-app
+  template:
+    metadata:
+      labels:
+        app: cth-app
+    spec:
+      containers:
+      - name: cth-app
+        image: cth-reporting-app:1.0.0
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8080
+        env:
+        - name: CTH_APP_NAME
+          value: "CTH Enterprise Reporting System"
+        - name: SPRING_DATASOURCE_URL
+          value: "jdbc:h2:mem:cthdb"
+        resources:
+          requests:
+            memory: "512Mi"
+            cpu: "250m"
+          limits:
+            memory: "1024Mi"
+            cpu: "1000m"

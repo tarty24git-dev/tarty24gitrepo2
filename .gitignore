@@ -1,0 +1,10 @@
+target/
+*.class
+*.jar
+*.war
+app.log
+app.pid
+custom-application.properties
+.idea/
+*.iml
+.DS_Store
